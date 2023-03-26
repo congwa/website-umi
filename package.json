@@ -2,18 +2,18 @@
   "private": true,
   "author": "cong_wa <cong_wa@163.com>",
   "scripts": {
-    "dev": "max dev",
     "build": "max build",
+    "dev": "max dev",
     "format": "prettier --cache --write .",
-    "prepare": "husky install",
     "postinstall": "max setup",
+    "prepare": "husky install",
     "setup": "max setup",
     "start": "npm run dev"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.0.1",
-    "@umijs/max": "^4.0.62",
+    "@umijs/max": "^4.0.63",
     "antd": "^5.0.0"
   },
   "devDependencies": {
