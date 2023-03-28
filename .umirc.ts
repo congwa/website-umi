@@ -7,7 +7,7 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: '@umijs/max',
+    title: 'biomed168',
   },
   routes: [
     {
@@ -15,21 +15,30 @@ export default defineConfig({
       redirect: '/home',
     },
     {
+      name: '登陆',
+      path: '/login',
+      headerRender: false,
+      menuRender: false,
+      component: './Login',
+      hideInMenu: true,
+    },
+    {
       name: '首页',
       path: '/home',
       component: './Home',
-    },
-    {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
-    {
-        name: ' CRUD 示例',
-        path: '/table',
-        component: './Table',
+      hideInMenu: true,
+      wrappers: ['@/wrappers/login'],
     },
   ],
-  npmClient: 'pnpm',
-});
+  proxy: {
+    '/v1': {
+      target: 'http://127.0.0.1:3003',
 
+      changeOrigin: true,
+      pathRewrite: { '^/v1': '/v1' },
+      logLevel: 'debug',
+    },
+  },
+  npmClient: 'pnpm',
+  tailwindcss: {},
+});
