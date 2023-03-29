@@ -1,3 +1,42 @@
 export { loginReq } from './login';
 
-export { bannerAddReq, bannerDelReq, bannerDetailReq, bannerEditReq, bannerListReq } from './banner';
+export {
+  bannerAddReq,
+  bannerDelReq,
+  bannerDetailReq,
+  bannerEditReq,
+  bannerListReq,
+} from './banner';
+
+export {
+  menuAddReq,
+  menuDelReq,
+  menuDetailReq,
+  menuEditReq,
+  menuListReq,
+} from './menu';
+
+export {
+  productAddReq,
+  productDelReq,
+  productDetailReq,
+  productEditReq,
+  productListReq,
+  productMenuListAllReq,
+  productMenuListReq,
+} from './product';
+
+export {
+  newsAddReq,
+  newsDelReq,
+  newsDetailReq,
+  newsEditReq,
+  newsListReq,
+} from './news';
+
+export {
+  companiesAddReq,
+  companiesDelReq,
+  companiesEditReq,
+  companiesListReq,
+} from './companies';
