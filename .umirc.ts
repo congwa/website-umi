@@ -29,6 +29,34 @@ export default defineConfig({
       hideInMenu: true,
       wrappers: ['@/wrappers/login'],
     },
+    {
+      name: '菜单管理',
+      path: '/menu',
+      component: './Menu',
+      hideInMenu: false,
+      wrappers: ['@/wrappers/login'],
+    },
+    {
+      name: '轮播图',
+      path: '/banner',
+      component: './Banner',
+      hideInMenu: false,
+      wrappers: ['@/wrappers/login'],
+    },
+    {
+      name: '新闻管理',
+      path: '/news',
+      component: './News',
+      hideInMenu: false,
+      wrappers: ['@/wrappers/login'],
+    },
+    {
+      name: '产品管理',
+      path: '/product',
+      component: './Product',
+      hideInMenu: false,
+      wrappers: ['@/wrappers/login'],
+    },
   ],
   proxy: {
     '/v1': {
