@@ -1,11 +1,16 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
 import { ProTable, TableDropdown } from '@ant-design/pro-components';
-import { Button, Dropdown, Space, Tag } from 'antd';
+import { Button, Dropdown, Space, Tag, Image, message } from 'antd';
 import { useRef } from 'react';
 import { request } from '@umijs/max';
-import { bannerAddReq, bannerDelReq, bannerDetailReq, bannerEditReq, bannerListReq } from '@/services';
-import AddModel from './add'
-
+import {
+  bannerAddReq,
+  bannerDelReq,
+  bannerDetailReq,
+  bannerEditReq,
+  bannerListReq,
+} from '@/services';
+import AddModel from './add';
 
 const columns = [
   {
@@ -31,10 +36,19 @@ const columns = [
   {
     title: '图片',
     dataIndex: 'imageUrl',
-    filters: true,
-    onFilter: true,
-    ellipsis: true,
-    valueType: 'image',
+    // valueType: 'image',
+    key: 'imageUrl',
+    render: (text, record) => (
+      <Image
+        height={100}
+        src={
+          record.imageUrl.includes('https://')
+            ? record.imageUrl
+            : `http://localhost:3003${record.imageUrl}`
+        }
+        alt="图片"
+      />
+    ),
   },
   {
     title: '跳转链接',
@@ -63,17 +77,15 @@ const columns = [
       >
         编辑
       </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
-        查看
+      <a
+        key="delete"
+        onClick={async () => {
+          await bannerDelReq(record.id);
+          action?.reload?.();
+        }}
+      >
+        删除
       </a>,
-      <TableDropdown
-        key="actionGroup"
-        onSelect={() => action?.reload()}
-        menus={[
-          { key: 'copy', name: '复制' },
-          { key: 'delete', name: '删除' },
-        ]}
-      />,
     ],
   },
 ];
@@ -91,6 +103,15 @@ export default () => {
       }}
       editable={{
         type: 'multiple',
+        onSave: async (key, row) => {
+          try {
+            await bannerEditReq(key, row);
+            message.success('保存成功');
+            actionRef.current?.reload();
+          } catch (error) {
+            message.error('保存失败请重试！');
+          }
+        },
       }}
       columnsState={{
         persistenceKey: 'pro-table-singe-demos',
@@ -125,10 +146,8 @@ export default () => {
         onChange: (page) => console.log(page),
       }}
       dateFormatter="string"
-      headerTitle="高级表格"
-      toolBarRender={() => [
-        <AddModel key="add"></AddModel>
-      ]}
+      headerTitle="banner列表"
+      toolBarRender={() => [<AddModel key="add"></AddModel>]}
     />
   );
 };

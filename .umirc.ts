@@ -61,7 +61,6 @@ export default defineConfig({
   proxy: {
     '/v1': {
       target: 'http://127.0.0.1:3003',
-
       changeOrigin: true,
       pathRewrite: { '^/v1': '/v1' },
       logLevel: 'debug',

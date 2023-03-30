@@ -9,8 +9,8 @@ const Login = React.memo(() => {
       ...values,
     });
     console.log(res);
-    if (res) {
-      localStorage.setItem('token', res.token);
+    if (res.data) {
+      localStorage.setItem('token', res.data.token);
       history.replace('/home');
     }
   };
