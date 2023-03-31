@@ -17,14 +17,23 @@ type Companies = {
 
   email: string | null;
 
+  description: string | null;
+
   createdAt: Date | null;
 };
 
 type ReqCompanies = Omit<Companies, 'id' | 'createdAt'>;
 
-export async function companiesListReq(): Promise<Companies[]> {
+export async function companiesReq(): Promise<Companies> {
   return request('/v1/companies', {
     method: 'GET',
+  });
+}
+
+export async function companiesDeailReq(body: ReqCompanies) {
+  return request(`/v1/companies/${1}`, {
+    method: 'GET',
+    data: body,
   });
 }
 

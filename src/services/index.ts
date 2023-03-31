@@ -38,5 +38,5 @@ export {
   companiesAddReq,
   companiesDelReq,
   companiesEditReq,
-  companiesListReq,
+  companiesReq,
 } from './companies';

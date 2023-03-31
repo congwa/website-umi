@@ -30,6 +30,13 @@ export default defineConfig({
       wrappers: ['@/wrappers/login'],
     },
     {
+      name: '公司信息',
+      path: '/companies',
+      component: './Companies',
+      hideInMenu: false,
+      wrappers: ['@/wrappers/login'],
+    },
+    {
       name: '菜单管理',
       path: '/menu',
       component: './Menu',
