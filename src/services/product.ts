@@ -31,7 +31,7 @@ export async function productAddReq(body: ReqProduct) {
 
 export async function productEditReq(id: number, body: ReqProduct) {
   return request(`/v1/product/${id}`, {
-    method: 'PUT',
+    method: 'PATCH',
     data: body,
   });
 }

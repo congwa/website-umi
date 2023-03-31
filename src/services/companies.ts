@@ -46,7 +46,7 @@ export async function companiesAddReq(body: ReqCompanies) {
 
 export async function companiesEditReq(id: number, body: ReqCompanies) {
   return request(`/v1/companies/${id}`, {
-    method: 'PUT',
+    method: 'PATCH',
     data: body,
   });
 }

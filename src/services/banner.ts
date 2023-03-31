@@ -18,7 +18,6 @@ export async function bannerListReq(): Promise<Banner[]> {
 }
 
 export async function bannerAddReq(body: ReqBanner) {
-  console.log(body, '-----');
   return request('/v1/banner', {
     method: 'POST',
     data: body,

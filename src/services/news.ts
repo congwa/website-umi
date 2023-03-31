@@ -33,7 +33,7 @@ export async function newsAddReq(body: ReqNews) {
 
 export async function newsEditReq(id: number, body: ReqNews) {
   return request(`/v1/news/${id}`, {
-    method: 'PUT',
+    method: 'PATCH',
     data: body,
   });
 }

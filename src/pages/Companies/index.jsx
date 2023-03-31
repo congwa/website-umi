@@ -1,8 +1,17 @@
 import { BetaSchemaForm } from '@ant-design/pro-components';
-import { Input, DatePicker } from 'antd';
+import { Input, DatePicker, Form } from 'antd';
 import { companiesReq, companiesEditReq } from '@/services/companies';
+import Quill from '@/components/Quill';
 
 const columns = [
+  {
+    dataIndex: 'id',
+    fieldProps: {
+      style: {
+        display: 'none',
+      },
+    },
+  },
   {
     title: '公司名称',
     dataIndex: 'name',
@@ -16,8 +25,16 @@ const columns = [
     },
   },
   {
+    title: '地址1',
+    dataIndex: 'state',
+  },
+  {
     title: '地址',
     dataIndex: 'address',
+  },
+  {
+    title: '地址3',
+    dataIndex: 'zip',
   },
   {
     title: '城市',
@@ -31,13 +48,21 @@ const columns = [
     title: '邮箱',
     dataIndex: 'email',
   },
+  {
+    name: 'description',
+    title: '详情',
+    renderFormItem: (item, formProps) => <Quill {...formProps} />,
+    rules: [{ required: true, message: '请输入富文本内容' }],
+  },
 ];
 
 const CompaniesForm = () => {
   const handleFinish = async (values) => {
     try {
       if (values.id) {
-        await companiesEditReq(values.id, values);
+        const d = { ...values };
+        delete d.id;
+        await companiesEditReq(values.id, d);
         console.log('提交成功');
       }
     } catch (error) {
@@ -48,7 +73,6 @@ const CompaniesForm = () => {
   return (
     <>
       <BetaSchemaForm
-        initialValues={handleFinish()}
         shouldUpdate={false}
         layoutType="Form"
         request={async () => {
