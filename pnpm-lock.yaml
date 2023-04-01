@@ -9,6 +9,10 @@ specifiers:
   '@umijs/max': ^4.0.63
   '@wangeditor/editor': ^5.1.23
   '@wangeditor/editor-for-react': ^1.0.6
+  '@wangeditor/plugin-ctrl-enter': ^1.1.2
+  '@wangeditor/plugin-link-card': ^1.0.0
+  '@wangeditor/plugin-md': ^1.0.0
+  '@wangeditor/plugin-upload-attachment': ^1.1.0
   ahooks: ^3.7.6
   antd: ^5.0.0
   cross-env: ^7.0.3
@@ -27,6 +31,10 @@ dependencies:
   '@umijs/max': 4.0.64_g3jyhyiftf2p6jllosiam5waje
   '@wangeditor/editor': 5.1.23
   '@wangeditor/editor-for-react': 1.0.6_@wangeditor+editor@5.1.23
+  '@wangeditor/plugin-ctrl-enter': 1.1.2_@wangeditor+editor@5.1.23
+  '@wangeditor/plugin-link-card': 1.0.0_@wangeditor+editor@5.1.23
+  '@wangeditor/plugin-md': 1.0.0_@wangeditor+editor@5.1.23
+  '@wangeditor/plugin-upload-attachment': 1.1.0_@wangeditor+editor@5.1.23
   ahooks: 3.7.6
   antd: 5.3.3
   cross-env: 7.0.3
@@ -4422,6 +4430,42 @@ packages:
       snabbdom: 3.5.1
     dev: false
 
+  /@wangeditor/plugin-ctrl-enter/1.1.2_@wangeditor+editor@5.1.23:
+    resolution: {integrity: sha512-TbYXcCbpwmgjb+Bwi+cy5q6BlNLtV8uIavxeUns+TRwXTNZDiItfDqduTH/fyMvhpKmt6cDMeXRgX4UVb0V75Q==}
+    peerDependencies:
+      '@wangeditor/editor': '>=5.0.0'
+    dependencies:
+      '@wangeditor/editor': 5.1.23
+    dev: false
+
+  /@wangeditor/plugin-link-card/1.0.0_@wangeditor+editor@5.1.23:
+    resolution: {integrity: sha512-wwJShqyqIjAw2GVSPoXqTtzO+q+raFypYQQmR3zYZV79ZvJz7dK5+XN7RN+rxT6V3N1b1nt0c2bUabcpP/pMpQ==}
+    peerDependencies:
+      '@wangeditor/editor': '>=5.0.0'
+      snabbdom: ^3.3.1
+    dependencies:
+      '@wangeditor/editor': 5.1.23
+    dev: false
+
+  /@wangeditor/plugin-md/1.0.0_@wangeditor+editor@5.1.23:
+    resolution: {integrity: sha512-wpbusrhSNmb6keC5vmiaQ2nBBfiwwVWmfRp+zNB65nGrPHVRjaFQBNxTpGoL+rc02KCYdflzEbZAg+kzGtMXlQ==}
+    peerDependencies:
+      '@wangeditor/editor': '>=5.0.0'
+    dependencies:
+      '@wangeditor/editor': 5.1.23
+    dev: false
+
+  /@wangeditor/plugin-upload-attachment/1.1.0_@wangeditor+editor@5.1.23:
+    resolution: {integrity: sha512-K6SsV3Cv1g+Ob1xjRRQ13Sh3lcj3yAa/aXMaKKbaPI76rNZiOpyAGH/iVv5i9enmwbZql01IXpvhK+HtrikVyQ==}
+    peerDependencies:
+      '@uppy/core': ^2.1.5
+      '@wangeditor/editor': '>=5.1.16'
+      snabbdom: ^3.3.1
+    dependencies:
+      '@wangeditor/editor': 5.1.23
+      dom7: 4.0.6
+    dev: false
+
   /@wangeditor/table-module/1.1.4_frn63tavnsfoapymzxdzvpjebe:
     resolution: {integrity: sha512-5saanU9xuEocxaemGdNi9t8MCDSucnykEC6jtuiT72kt+/Hhh4nERYx1J20OPsTCCdVr7hIyQenFD1iSRkIQ6w==}
     peerDependencies:
@@ -5841,6 +5885,12 @@ packages:
     resolution: {integrity: sha512-oNlcUdHsC4zb7Msx7JN3K0Nro1dzJ48knvBOnDPKJ2GV9wl1i5vydJZUSyOfrkKFDZEud/jBsTk92S/VGSAe/g==}
     dependencies:
       ssr-window: 3.0.0
+    dev: false
+
+  /dom7/4.0.6:
+    resolution: {integrity: sha512-emjdpPLhpNubapLFdjNL9tP06Sr+GZkrIHEXLWvOGsytACUrkbeIdjO5g77m00BrHTznnlcNqgmn7pCN192TBA==}
+    dependencies:
+      ssr-window: 4.0.2
     dev: false
 
   /domain-browser/1.2.0:
@@ -10970,6 +11020,10 @@ packages:
 
   /ssr-window/3.0.0:
     resolution: {integrity: sha512-q+8UfWDg9Itrg0yWK7oe5p/XRCJpJF9OBtXfOPgSJl+u3Xd5KI328RUEvUqSMVM9CiQUEf1QdBzJMkYGErj9QA==}
+    dev: false
+
+  /ssr-window/4.0.2:
+    resolution: {integrity: sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==}
     dev: false
 
   /stable/0.1.8:

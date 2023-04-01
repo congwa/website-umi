@@ -17,6 +17,10 @@
     "@umijs/max": "^4.0.63",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-react": "^1.0.6",
+    "@wangeditor/plugin-ctrl-enter": "^1.1.2",
+    "@wangeditor/plugin-link-card": "^1.0.0",
+    "@wangeditor/plugin-md": "^1.0.0",
+    "@wangeditor/plugin-upload-attachment": "^1.1.0",
     "ahooks": "^3.7.6",
     "antd": "^5.0.0",
     "cross-env": "^7.0.3"

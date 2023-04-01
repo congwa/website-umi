@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Editor, Toolbar } from '@wangeditor/editor-for-react';
 import '@wangeditor/editor/dist/css/style.css';
+import { Boot } from '@wangeditor/editor';
+import linkCardModule from '@wangeditor/plugin-link-card';
+import attachmentModule from '@wangeditor/plugin-upload-attachment';
+import markdownModule from '@wangeditor/plugin-md';
+import ctrlEnterModule from '@wangeditor/plugin-ctrl-enter';
+
+Boot.registerModule(attachmentModule);
+Boot.registerModule(markdownModule);
+Boot.registerModule(ctrlEnterModule);
+
+// 注册。要在创建编辑器之前注册，且只能注册一次，不可重复注册。
+Boot.registerModule(linkCardModule);
 
 function MyEditor(props) {
   const [editor, setEditor] = useState(null); // 存储 editor 实例
@@ -14,9 +26,25 @@ function MyEditor(props) {
     };
   }, [editor]);
 
-  const toolbarConfig = {};
+  const toolbarConfig = {
+    insertKeys: {
+      index: 0, // 自定义插入的位置
+      keys: ['uploadAttachment'], // “上传附件”菜单
+    },
+  };
   let editorConfig = {
     placeholder: '请输入内容...',
+    hoverbarKeys: {
+      // 在编辑器中，选中链接文本时，要弹出的菜单
+      link: {
+        menuKeys: [
+          'editLink',
+          'unLink',
+          'viewLink', // 默认的配置可以通过 `editor.getConfig().hoverbarKeys.link` 获取
+          'convertToLinkCard', // 增加 '转为链接卡片'菜单
+        ],
+      },
+    },
     MENU_CONF: {
       ['uploadImage']: {
         server: '/v1/upload/album',
@@ -46,6 +74,17 @@ function MyEditor(props) {
           );
         },
       },
+      ['uploadAttachment']: {
+        server: '/v1/upload/album',
+        fieldName: 'file',
+        customInsert(res, file, insertFn) {
+          // TS 语法
+          const url = `${process.env.UMI_APP_UPLOAD_URL}${res.data.url}`;
+          console.log(url);
+          const alt = res.data.originalname;
+          insertFn(alt, url);
+        },
+      },
       ['codeSelectLang']: {
         codeLangs: [
           { text: 'CSS', value: 'css' },
@@ -55,6 +94,23 @@ function MyEditor(props) {
           { text: 'JavaScript', value: 'javascript' },
         ],
       },
+
+      // convertToLinkCard: {
+      //   // 自定义获取 link-card 信息，可选
+      //   // 返回 { title, iconImgSrc }
+      //   async getLinkCardInfo(linkText, linkUrl) {
+      //     // 1. 可通过 iframe 加载网页，然后获取网页 title 和其中的图片
+      //     // 2. 服务端获取（有些网页会设置 `X-Frame-Options` ，无法通过 iframe 加载）
+
+      //     // // 模拟异步返回
+      //     return new Promise(resolve => {
+      //       setTimeout(() => {
+      //         const info = { title: linkText, iconImgSrc: '' }
+      //         resolve(info)
+      //       }, 100)
+      //     })
+      //   }
+      // },
     },
   };
 
@@ -72,7 +128,7 @@ function MyEditor(props) {
         onCreated={setEditor}
         onChange={(editor) => onChange(editor.getHtml())}
         mode="default"
-        style={{ height: '500px' }}
+        style={{}}
       />
     </>
   );
