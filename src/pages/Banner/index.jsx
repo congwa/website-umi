@@ -42,7 +42,8 @@ const columns = [
       <Image
         height={100}
         src={
-          record.imageUrl.includes('https://')
+          record.imageUrl.includes('https://') ||
+          record.imageUrl.includes('http://')
             ? record.imageUrl
             : `http://localhost:3003${record.imageUrl}`
         }
@@ -147,7 +148,14 @@ export default () => {
       }}
       dateFormatter="string"
       headerTitle="banner列表"
-      toolBarRender={() => [<AddModel key="add"></AddModel>]}
+      toolBarRender={() => [
+        <AddModel
+          reload={() => {
+            actionRef.current?.reload();
+          }}
+          key="add"
+        ></AddModel>,
+      ]}
     />
   );
 };

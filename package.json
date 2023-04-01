@@ -2,8 +2,8 @@
   "private": true,
   "author": "cong_wa <cong_wa@163.com>",
   "scripts": {
-    "build": "max build",
-    "dev": "max dev",
+    "build": "cross-env UMI_ENV=prod max build",
+    "dev": "cross-env UMI_ENV=dev max dev",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "prepare": "husky install",

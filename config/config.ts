@@ -1,6 +1,25 @@
 import { defineConfig } from '@umijs/max';
 
+//  这里umi有bug，一直没有修复
+// https://github.com/umijs/umi/issues/10863
+// https://github.com/umijs/umi/issues/10855
+// https://github.com/umijs/umi/issues/10851
+
+// 使用不优雅的方式实现目的
+const defineEnv = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return {
+      'process.env.UMI_APP_UPLOAD_URL': 'http://localhost:3003',
+    };
+  } else if (process.env.NODE_ENV === 'production') {
+    return {
+      'process.env.UMI_APP_UPLOAD_URL': 'http://localhost:3003',
+    };
+  }
+};
+
 export default defineConfig({
+  define: defineEnv(),
   antd: {},
   access: {},
   model: {},
@@ -77,6 +96,6 @@ export default defineConfig({
       logLevel: 'debug',
     },
   },
-  npmClient: 'pnpm',
   tailwindcss: {},
+  npmClient: 'pnpm',
 });
