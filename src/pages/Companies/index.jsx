@@ -1,7 +1,7 @@
 import { BetaSchemaForm } from '@ant-design/pro-components';
 import { Input, DatePicker, Form } from 'antd';
 import { companiesReq, companiesEditReq } from '@/services/companies';
-import Quill from '@/components/Quill';
+import MyEditor from '@/components/Editor';
 
 const columns = [
   {
@@ -51,7 +51,7 @@ const columns = [
   {
     name: 'description',
     title: '详情',
-    renderFormItem: (item, formProps) => <Quill {...formProps} />,
+    renderFormItem: (item, formProps) => <MyEditor {...formProps} />,
     rules: [{ required: true, message: '请输入富文本内容' }],
   },
 ];

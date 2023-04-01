@@ -40,3 +40,5 @@ export {
   companiesEditReq,
   companiesReq,
 } from './companies';
+
+export { uploadReq } from './upload';

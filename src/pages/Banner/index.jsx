@@ -45,7 +45,7 @@ const columns = [
           record.imageUrl.includes('https://') ||
           record.imageUrl.includes('http://')
             ? record.imageUrl
-            : `http://localhost:3003${record.imageUrl}`
+            : `${process.env.UMI_APP_UPLOAD_URL}${record.imageUrl}`
         }
         alt="图片"
       />

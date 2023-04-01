@@ -28,10 +28,7 @@ export default defineConfig({
   layout: {
     title: 'biomed168',
   },
-  mfsu: {
-    strategy: 'eager',
-    include: ['react-quill'],
-  },
+  mfsu: {},
   routes: [
     {
       path: '/',
