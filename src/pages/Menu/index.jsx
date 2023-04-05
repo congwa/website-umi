@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { EditableProTable } from '@ant-design/pro-components';
-import { Button, message } from 'antd';
+import { Button, message, Popconfirm } from 'antd';
 import {
   menuListReq,
   menuAddReq,
@@ -48,9 +48,33 @@ const MenuTable = () => {
           onRefresh={fetchData}
           defaultValue={record}
         ></Operate>,
+        <Popconfirm
+          key="del"
+          title="Delete the task"
+          description="Are you sure to delete this task?"
+          onConfirm={() => onDelete(record.id)}
+          onCancel={() => {}}
+          okText="Yes"
+          cancelText="No"
+        >
+          {' '}
+          <Button type="link" danger>
+            删除
+          </Button>
+        </Popconfirm>,
       ],
     },
   ];
+
+  const onDelete = async (key) => {
+    // 删除行数据
+    try {
+      await handleDelete(key);
+      message.success('成功');
+    } catch (error) {
+      message.success('失败');
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -121,27 +145,6 @@ const MenuTable = () => {
             重置
           </Button>,
         ]}
-        editable={{
-          onSave: async (key, row) => {
-            try {
-              // 保存编辑数据
-              await handleSave(key, row);
-              message.success('成功');
-            } catch (error) {
-              message.success('失败');
-            }
-          },
-          onDelete: async (key) => {
-            // 删除行数据
-            try {
-              await handleDelete(key);
-              message.success('成功');
-            } catch (error) {
-              message.success('失败');
-            }
-          },
-          onChange: () => {},
-        }}
         expandable={{
           defaultExpandAllRows: true,
           indentSize: 20,

@@ -56,7 +56,20 @@ export const request: RequestConfig = {
         console.log(error.response);
         // Axios 的错误
         // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
-        message.error('Response status:' + error.response.status);
+        console.log(
+          'Response status:' +
+            error.response.status +
+            (Array.isArray(error.response.data.message)
+              ? JSON.stringify(error.response.data.message)
+              : error.response.data.message),
+        );
+        message.error(
+          'Response status:' +
+            error.response.status +
+            (Array.isArray(error.response.data.message)
+              ? JSON.stringify(error.response.data.message)
+              : error.response.data.message),
+        );
         if (error.response?.status === 401) {
           localStorage.clear();
           history.push('/login');

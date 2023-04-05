@@ -27,33 +27,31 @@ export default (props) => {
         icon: <PlusOutlined />,
         type: 'primary',
         text: props.text || '新建',
-        defaultValue: null,
         requestRequest: (data) => menuAddReq(data),
       },
+      menuType: '1',
+      defaultValue: null,
     },
     edit: {
       btn: {
         icon: '',
         type: 'link',
         text: props.text || '编辑',
+        requestRequest: (data) => menuEditReq(data.id, data),
       },
+      menuType: props.defaultValue?.parentId ? '2' : '1',
       defaultValue: props.defaultValue || [],
-      requestRequest: () => menuEditReq,
     },
   };
 
   const currentConfig = config[type];
 
   const handleSave = async (id, row) => {
-    try {
-      await currentConfig[type].requestRequest({
-        id,
-        ...row,
-      });
-      props.onRefresh && props.onRefresh();
-    } catch (error) {
-      console.log(error);
-    }
+    await currentConfig.btn.requestRequest({
+      id: currentConfig.defaultValue?.id || id,
+      ...row,
+    });
+    props.onRefresh && props.onRefresh();
   };
   return (
     <>
@@ -74,7 +72,7 @@ export default (props) => {
         }}
         onFinish={async (values) => {
           try {
-            await handleSave(values.id, values);
+            await handleSave(currentConfig.defaultValue?.id, values);
             setModalVisible(false);
             message.success('保存成功');
           } catch (error) {
@@ -91,7 +89,8 @@ export default (props) => {
         <ProFormSegmented
           name="menuType"
           label="菜单类型"
-          initialValue={'1'}
+          initialValue={currentConfig.menuType}
+          disabled={type === 'edit'}
           valueEnum={{
             1: {
               text: '一级菜单',
@@ -109,19 +108,23 @@ export default (props) => {
               message: '此项为必填项',
             },
           ]}
+          initialValue={currentConfig.defaultValue?.name}
           label="标题"
           name="name"
         />
-        <ProFormText label="跳转链接" name="url" />
+        <ProFormText
+          label="跳转链接"
+          name="url"
+          initialValue={currentConfig.defaultValue?.url}
+        />
         <ProFormDependency
           key="menuType-url"
           name={['menuType', 'url']}
           ignoreFormListField
         >
           {({ menuType, url }) => {
-            console.log(menuType, url, '----------');
             if (menuType === '1') {
-            } else if (menuType === '2' && !url) {
+            } else if (menuType === '2') {
               return (
                 <ProFormSelect
                   options={dataSource.map((item) => {
@@ -130,8 +133,15 @@ export default (props) => {
                       label: item.name,
                     };
                   })}
+                  initialValue={currentConfig.defaultValue?.parentId}
                   name="parentId"
                   label="选择父菜单"
+                  rules={[
+                    {
+                      required: true,
+                      message: '此项为必填项',
+                    },
+                  ]}
                 />
               );
             }
