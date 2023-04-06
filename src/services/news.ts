@@ -18,9 +18,10 @@ type News = {
 
 type ReqNews = Omit<News, 'id' | 'createdAt' | 'updatedAt'>;
 
-export async function newsListReq(): Promise<News[]> {
+export async function newsListReq(params: any): Promise<News[]> {
   return request('/v1/news', {
     method: 'GET',
+    params: { ...params },
   });
 }
 
