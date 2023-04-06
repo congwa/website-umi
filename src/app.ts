@@ -97,7 +97,7 @@ export const request: RequestConfig = {
       };
 
       if (options.method?.toUpperCase() === 'GET') {
-        options.params = options.data;
+        // options.params = options.data;
       } else {
         //我们的请求参数和后端约定的是除了一些特殊情况使用formData 其他都使用form格式，因此默认是使用form格式
         options.requestType = options.requestType

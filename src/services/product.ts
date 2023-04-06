@@ -16,9 +16,10 @@ type Product = {
 
 type ReqProduct = Omit<Product, 'id'>;
 
-export async function productListReq(): Promise<Product[]> {
+export async function productListReq(params: any): Promise<Product[]> {
   return request('/v1/product', {
     method: 'GET',
+    params: {...params}
   });
 }
 

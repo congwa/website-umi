@@ -3,5 +3,9 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "outDir": "shortest"
-  }
+  },
+  "typeRoots": [
+    "./node_modules/@types",
+    "./typings.d.ts"
+  ]
 }
