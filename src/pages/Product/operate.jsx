@@ -13,10 +13,17 @@ import {
 import { Button, Dropdown, Space, Tag, message } from 'antd';
 import { useRef, useState } from 'react';
 import { menuAddReq, menuEditReq } from '@/services';
-import {menuListReq, productAddReq, productDelReq, productDetailReq, productEditReq, productListReq, productMenuListAllReq, productMenuListReq } from '@/services';
+import {
+  menuListReq,
+  productAddReq,
+  productDelReq,
+  productDetailReq,
+  productEditReq,
+  productListReq,
+  productMenuListAllReq,
+  productMenuListReq,
+} from '@/services';
 import MyEditor from '@/components/Editor';
-
-
 
 export default (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,7 +33,7 @@ export default (props) => {
 
   const menuList = props.menuList || [];
 
-  if (type === 'edit') console.log(props)
+  if (type === 'edit') console.log(props);
 
   const config = {
     add: {
@@ -53,7 +60,7 @@ export default (props) => {
 
   const currentConfig = config[type];
 
-  console.log('defaultValue',currentConfig.defaultValue); 
+  console.log('defaultValue', currentConfig.defaultValue);
 
   const handleSave = async (id, row) => {
     await currentConfig.btn.requestRequest({
@@ -68,8 +75,8 @@ export default (props) => {
       <ProForm.Item {...props}>
         <MyEditor {...props.fieldProps} />
       </ProForm.Item>
-    )
-  }
+    );
+  };
   return (
     <>
       <Button
@@ -107,7 +114,7 @@ export default (props) => {
           rules={[
             {
               required: true,
-              message: '此项为必填项,请填写',
+              message: '此项为必填项',
             },
           ]}
           initialValue={currentConfig.defaultValue?.name}
@@ -124,9 +131,7 @@ export default (props) => {
           initialValue={currentConfig.defaultValue?.description}
           label="内容"
           name="description"
-        >
-
-        </ProFromEditor>
+        ></ProFromEditor>
         <ProFormSelect
           options={menuList}
           initialValue={currentConfig.defaultValue?.menuId}
@@ -139,7 +144,6 @@ export default (props) => {
             },
           ]}
         />
-  
       </ModalForm>
     </>
   );
