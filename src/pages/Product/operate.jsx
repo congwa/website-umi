@@ -107,7 +107,7 @@ export default (props) => {
           rules={[
             {
               required: true,
-              message: '此项为必填项',
+              message: '此项为必填项,请填写',
             },
           ]}
           initialValue={currentConfig.defaultValue?.name}
