@@ -14,6 +14,7 @@ export {
   menuDetailReq,
   menuEditReq,
   menuListReq,
+  menuListChildReq,
 } from './menu';
 
 export {

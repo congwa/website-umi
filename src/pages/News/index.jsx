@@ -2,6 +2,7 @@ import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
 import { ProTable, TableDropdown } from '@ant-design/pro-components';
 import { Button, Dropdown, Space, Tag, Popconfirm, message } from 'antd';
 import { useRef, useEffect, useState } from 'react';
+import { WhileType } from '@/config';
 import {
   menuListReq,
   newsAddReq,
@@ -9,10 +10,12 @@ import {
   newsDetailReq,
   newsEditReq,
   newsListReq,
+  menuListChildReq,
   newsMenuListAllReq,
   newsMenuListReq,
 } from '@/services';
 import Operate from './operate';
+import Item from 'antd/es/list/Item';
 
 export default () => {
   const actionRef = useRef();
@@ -21,7 +24,7 @@ export default () => {
     onMenuListReq();
   }, []);
   const onMenuListReq = async () => {
-    const data = await menuListReq();
+    const data = await menuListChildReq(WhileType.NEWS);
     console.log(data, 'menulist');
     setMenuList(
       data.data.map((item) => {

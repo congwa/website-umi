@@ -10,7 +10,13 @@ type Menu = {
 type ReqMenu = Omit<Menu, 'id'>;
 
 export async function menuListReq(): Promise<Menu[]> {
-  return request('/v1/menu', {
+  return request(`/v1/menu`, {
+    method: 'GET',
+  });
+}
+
+export async function menuListChildReq(parentId: number): Promise<Menu[]> {
+  return request(`/v1/menu/children/${parentId}`, {
     method: 'GET',
   });
 }

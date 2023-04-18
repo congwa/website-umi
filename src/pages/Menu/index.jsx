@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { EditableProTable } from '@ant-design/pro-components';
 import { Button, message, Popconfirm } from 'antd';
+import { WhileTypeArray } from '@/config';
 import {
   menuListReq,
   menuAddReq,
@@ -10,6 +11,9 @@ import {
   menuEditReq,
 } from '@/services';
 import Operate from './operate';
+
+// 内置类型不能编辑 产品分类，新闻分类
+const editWhiteList = WhileTypeArray;
 
 const MenuTable = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -40,28 +44,32 @@ const MenuTable = () => {
       title: '操作',
       valueType: 'option',
       render: (text, record, _, action) => [
-        <Operate
-          key="edit"
-          type="edit"
-          text="编辑"
-          dataSource={dataSource}
-          onRefresh={fetchData}
-          defaultValue={record}
-        ></Operate>,
-        <Popconfirm
-          key="del"
-          title="Delete the task"
-          description="Are you sure to delete this task?"
-          onConfirm={() => onDelete(record.id)}
-          onCancel={() => {}}
-          okText="Yes"
-          cancelText="No"
-        >
-          {' '}
-          <Button type="link" danger>
-            删除
-          </Button>
-        </Popconfirm>,
+        !editWhiteList.includes(record.id) && (
+          <Operate
+            key="edit"
+            type="edit"
+            text="编辑"
+            dataSource={dataSource}
+            onRefresh={fetchData}
+            defaultValue={record}
+          ></Operate>
+        ),
+        !editWhiteList.includes(record.id) && (
+          <Popconfirm
+            key="del"
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={() => onDelete(record.id)}
+            onCancel={() => {}}
+            okText="Yes"
+            cancelText="No"
+          >
+            {' '}
+            <Button type="link" danger>
+              删除
+            </Button>
+          </Popconfirm>
+        ),
       ],
     },
   ];
