@@ -25,6 +25,7 @@ import {
   newsMenuListReq,
 } from '@/services';
 import MyEditor from '@/components/Editor';
+import MyUpload from '@/components/Upload';
 
 export default (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,7 +35,7 @@ export default (props) => {
 
   const menuList = props.menuList || [];
 
-  if (type === 'edit') console.log(props);
+  // if (type === 'edit') console.log(props);
 
   const config = {
     add: {
@@ -64,9 +65,11 @@ export default (props) => {
   console.log('defaultValue', currentConfig.defaultValue);
 
   const handleSave = async (id, row) => {
+    console.log(row.image);
     await currentConfig.btn.requestRequest({
       id: currentConfig.defaultValue?.id || id,
       ...row,
+      image: row.image[0].response,
     });
     props.onRefresh && props.onRefresh();
   };
@@ -133,14 +136,22 @@ export default (props) => {
           label="新闻的简短描述信息"
           name="subTitle"
         />
-        <ProFormUploadButton
+        <MyUpload
           rules={[{ required: true, message: '请上传图片' }]}
           label="图片"
           name="image"
-          action="/v1/upload/album"
-          headers={{ Authorization: 'Bearer ' + localStorage.getItem('token') }}
           fieldProps={{ listType: 'picture', maxCount: 1 }}
           extra="请上传格式为 jpg、jpeg、png 的图片"
+          initialValue={
+            currentConfig.defaultValue?.image
+              ? [
+                  {
+                    response: currentConfig.defaultValue?.image,
+                    thumbUrl: currentConfig.defaultValue?.image,
+                  },
+                ]
+              : []
+          } // antd这破玩意有bug文档不清晰，回填了之后图片不显示
         />
         <ProFromEditor
           rules={[
