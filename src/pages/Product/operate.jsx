@@ -3,6 +3,7 @@ import {
   ProTable,
   TableDropdown,
   ProFormSegmented,
+  ProFormTextArea,
   ProFormText,
   ModalForm,
   ProFormSelect,
@@ -120,6 +121,20 @@ export default (props) => {
           initialValue={currentConfig.defaultValue?.name}
           label="商品名称"
           name="name"
+        />
+        <ProFormTextArea
+          initialValue={currentConfig.defaultValue?.subName}
+          label="商品简短描述信息"
+          name="subName"
+        />
+        <ProFormUploadButton
+          rules={[{ required: true, message: '请上传图片' }]}
+          label="图片"
+          name="image"
+          action="/v1/upload/album"
+          headers={{ Authorization: 'Bearer ' + localStorage.getItem('token') }}
+          fieldProps={{ listType: 'picture', maxCount: 1 }}
+          extra="请上传格式为 jpg、jpeg、png 的图片"
         />
         <ProFromEditor
           rules={[
