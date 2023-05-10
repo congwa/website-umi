@@ -9,11 +9,11 @@ import { defineConfig } from '@umijs/max';
 const defineEnv = () => {
   if (process.env.NODE_ENV === 'development') {
     return {
-      'process.env.UMI_APP_UPLOAD_URL': 'http://localhost:3003',
+      'process.env.UMI_APP_UPLOAD_URL': 'http://imgs.biomed168.com/',
     };
   } else if (process.env.NODE_ENV === 'production') {
     return {
-      'process.env.UMI_APP_UPLOAD_URL': 'http://localhost:3003',
+      'process.env.UMI_APP_UPLOAD_URL': 'http://imgs.biomed168.com/',
     };
   }
 };

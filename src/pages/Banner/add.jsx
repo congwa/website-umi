@@ -15,6 +15,7 @@ import {
   bannerEditReq,
   bannerListReq,
 } from '@/services';
+import MyUpload from '@/components/Upload';
 
 export default (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -38,7 +39,8 @@ export default (props) => {
           console.log(process.env.UMI_APP_UPLOAD_URL);
           await bannerAddReq({
             ...values,
-            imageUrl: `${process.env.UMI_APP_UPLOAD_URL}${values.imageUrl[0].response.data.url}`,
+            // ${process.env.UMI_APP_UPLOAD_URL}
+            imageUrl: `${values.image[0].response}`,
           });
           setModalVisible(false);
           props.reload && props.reload();
@@ -60,11 +62,10 @@ export default (props) => {
           label="标题"
           name="title"
         />
-        <ProFormUploadButton
+        <MyUpload
           rules={[{ required: true, message: '请上传图片' }]}
           label="图片"
-          name="imageUrl"
-          action="/v1/upload/album"
+          name="image"
           fieldProps={{ listType: 'picture', maxCount: 1 }}
           extra="请上传格式为 jpg、jpeg、png 的图片"
         />

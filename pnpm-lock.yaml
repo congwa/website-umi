@@ -37,11 +37,11 @@ dependencies:
   '@wangeditor/plugin-upload-attachment': 1.1.0_@wangeditor+editor@5.1.23
   ahooks: 3.7.6
   antd: 5.3.3
-  cross-env: 7.0.3
 
 devDependencies:
   '@types/react': 18.0.31
   '@types/react-dom': 18.0.11
+  cross-env: 7.0.3
   husky: 8.0.3
   lint-staged: 13.2.0
   prettier: 2.8.7
@@ -5544,7 +5544,7 @@ packages:
     hasBin: true
     dependencies:
       cross-spawn: 7.0.3
-    dev: false
+    dev: true
 
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
