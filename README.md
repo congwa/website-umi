@@ -4,9 +4,9 @@
 
 ## 一个公司官网练手项目
 
-- [管理端 umi](https://github.com/congwa/biomed-umi)
-- [官网端 nextjs13 server components turbopack 当前](https://github.com/congwa/biomed-nextjs)
-- [后端 nestjs Prisma supabase](https://github.com/congwa/biomed-nestjs)
+- [管理端 umi](https://github.com/congwa/website-umi)
+- [官网端 nextjs13 server components turbopack 当前](https://github.com/congwa/website-nextjs)
+- [后端 nestjs Prisma supabase](https://github.com/congwa/website-nestjs)
 
 ## 结构
 
