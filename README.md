@@ -2,7 +2,7 @@
 
 `@umijs/max` 模板项目，更多功能参考 [Umi Max 简介](https://umijs.org/docs/max/introduce)
 
-## 一个公司官网练手项目
+## 一个toC官网练手项目
 
 - [管理端 umi](https://github.com/congwa/website-umi)
 - [官网端 nextjs13 server components turbopack 当前](https://github.com/congwa/website-nextjs)
